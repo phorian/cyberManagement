@@ -5,5 +5,7 @@
 # Client would require IP address of the Server, get this by running Ifconfig on your server (Linux) Machine command Line.
 # If you are running both Client and server on the same machine, input the loopback address.
 # Chat.
-# To exit, type in input bye in the command line.
+# To exit, type in bye in the command line.
 # Maximum of 5 Connections.
+
+# Don't forget to input "Bye" to exit.
