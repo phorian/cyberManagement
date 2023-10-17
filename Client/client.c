@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     }
 
     int sockfd, portno, n;
-    struct sockaddr_in server_addr,
+    struct sockaddr_in server_addr;
     struct  hostent *server;
     
     char buffer[255];
@@ -53,10 +53,10 @@ int main(int argc, char *argv[])
 
     bzero((char *) &server_addr, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
-    bcopy((char *)server->h+addr, (char *)&server_addr.sin_addr.s_addr, server->h_length);
+    bcopy((char *)server->h_addr, (char *)&server_addr.sin_addr.s_addr, server->h_length);
     server_addr.sin_port = htons(portno);
 
-    if(connect(sockfd, (struct  sockaddr *) server_addr, sizeof(server_addr))< 0)
+    if(connect(sockfd, (struct  sockaddr *) &server_addr, sizeof(server_addr))< 0)
         error("Connection failed");
 
         while (1)
@@ -73,12 +73,12 @@ int main(int argc, char *argv[])
                 error("Reading error");
             printf("Server: %s", buffer);
 
-            int i = strcmp("Bye", buffer, 3);
-             if(i == 0)
-            break;
+            int i = strcmp("Bye", buffer);
+            if(i == 0)
+            exit(0);
         }
 
-        close(sockfd)
+        close(sockfd);
         return 0;
         
 

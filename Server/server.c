@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 {
     if(argc < 2)
     {
-        fprintf(stderr, "Port No not provided.\n");
+        fprintf(stderr, "Port not provided.\n");
         exit(1);
     }
 
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
         n = read(newsockfd, buffer, 255);
         if(n < 0)
             error("Failed to read\n");
-        printf("client : %s\n", buffer);
+        printf("client : %s", buffer);
         bzero(buffer, 255);
         fgets(buffer, 255, stdin);
 
@@ -64,9 +64,9 @@ int main(int argc, char *argv[])
         if(n < 0)
             error("Failed to Write.\n");
 
-        int i = strcmp("Bye", buffer, 3);
+        int i = strcmp("Bye", buffer);
         if(i == 0)
-            break;
+            exit(0);
     }
 
     close(newsockfd);
